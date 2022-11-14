@@ -1,6 +1,7 @@
 /*
- * linux keyloggger
- */
+  linux keyloggger
+  @author Liu Mohan
+*/
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,7 +41,8 @@ int main(int argc, char ** argv){
 
 char* usage =
   "<help>\n"
-  "usage: keyloggger -s | -k | -h [-o log][-d device][-n]\n\n"
+  "usage: keyloggger -s | -k | -h [-o log][-d device][-n]\n"
+  "!need root privilege.\n\n"
   "option         argument    description"
   "-s/--start     (no)        start keyloggger\n"
   "-k/--kill      (no)        kill keyloggger\n"

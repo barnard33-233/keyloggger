@@ -1,3 +1,7 @@
+/*
+  linux keyloggger
+  @author Liu Mohan
+*/
 #include "keylogger.h"
 
 char * normal_scancode_to_ascii[] = {

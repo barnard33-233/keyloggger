@@ -1,6 +1,8 @@
 /*
+  linux keyloggger
+  @author Liu Mohan
+
   parse arguments passed from command line
-/*
   arguments:
   0. -s/--start
   1. -o/--output output_file_name
@@ -11,7 +13,6 @@
 */
 #include <getopt.h>
 #include "keylogger.h"
-
 
 struct option long_options[] = {
   {"start", no_argument, NULL, 's'},

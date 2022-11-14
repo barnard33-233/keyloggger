@@ -1,3 +1,7 @@
+/*
+  linux keyloggger
+  @author Liu Mohan
+*/
 #include "keylogger.h"
 #include <signal.h>
 

