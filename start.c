@@ -183,7 +183,7 @@ void logger(){
 
     if(ev.value == 1){
       if(ev.code == LSHIFT_VAL || ev.code == RSHIFT_VAL){
-        shift_pressed = 1;
+        shift_pressed++;
       }
       if(shift_pressed && caps_pressed){
         table_ptr = shift_caps_scancode_to_ascii;
@@ -212,7 +212,7 @@ void logger(){
         caps_pressed = 1 - caps_pressed;// 0-->1 or 1-->0
       }
       if(ev.code == LSHIFT_VAL || ev.code == RSHIFT_VAL){
-        shift_pressed = 0;
+        shift_pressed = shift_pressed - 1 > 0 ? shift_pressed - 1 : 0;
       }
     }
   }

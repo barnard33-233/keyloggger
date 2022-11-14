@@ -4,6 +4,7 @@
 
 **/report
 **/build
+event-write/*
 
 # Prerequisites
 *.d
