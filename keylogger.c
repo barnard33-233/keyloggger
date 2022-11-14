@@ -13,6 +13,14 @@
 int main(int argc, char ** argv){
   arguments args;
   args = parse_args(argc, argv);
+  INFO("operation: %d\n", args.operation);
+  if(args.arg_log!=NULL){
+    INFO("log: %s\n", args.arg_log);
+  }
+  if(args.arg_dev!=NULL){
+    INFO("dev: %s\n", args.arg_dev);
+  }
+  INFO("daemon: %d\n", args.arg_daemon_flag);
   switch(args.operation){
     case START:
       start_logging(args);

