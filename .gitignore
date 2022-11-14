@@ -2,6 +2,7 @@
 **/.idea
 **/.vs
 
+**/report
 **/build
 
 # Prerequisites
