@@ -43,7 +43,7 @@ char* usage =
   "<help>\n"
   "usage: keyloggger -s | -k | -h [-o log][-d device][-n]\n"
   "!need root privilege.\n\n"
-  "option         argument    description"
+  "option         argument    description\n"
   "-s/--start     (no)        start keyloggger\n"
   "-k/--kill      (no)        kill keyloggger\n"
   "-h/--help      (no)        get help information\n"
